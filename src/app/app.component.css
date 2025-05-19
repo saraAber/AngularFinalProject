@@ -1,0 +1,53 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* יישור слева */
+  font-family: Arial, sans-serif;
+  direction: rtl; /* כיוון מימין לשמאל */
+}
+
+.auth-buttons {
+  display: flex;
+  justify-content: flex-start; /* יישור слева */
+  margin-bottom: 20px;
+}
+
+.auth-buttons button {
+  margin-left: 10px; /* ריווח בין הכפתורים */
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.auth-buttons button:hover {
+  background-color: #45a049;
+}
+
+.courses-container {
+  width: 100%;
+}
+
+.courses-container h2 {
+  text-align: center;
+  color: #5e2369;
+}
+
+.courses-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.courses-container li {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* סגנון לאייקונים (אם אתה משתמש ב-Font Awesome) */
+.fas {
+  margin-left: 5px; /* ריווח בין האייקון לטקסט */
+}

@@ -1,0 +1,72 @@
+<div class="home-container">
+  <div class="user-circle-container">
+    <div class="user-circle" (click)="toggleUserOptions()">
+      {{ getUserInitials() }}
+    </div>
+    <div *ngIf="showUserOptions" class="user-options-popup">
+      <button (click)="editUser()">
+        <i class="material-icons">edit</i> עריכת פרטים
+      </button>
+      <button (click)="deleteUser()">
+        <i class="material-icons">delete</i> מחיקת משתמש
+      </button>
+    </div>
+  </div>
+
+  <header class="top-bar">
+    <div class="auth-buttons">
+      <button (click)="goToLogin()">
+        <i class="material-icons">login</i> התחברות
+      </button>
+      <button (click)="goToRegister()">
+        <i class="material-icons">person_add</i> הרשמה
+      </button>
+    </div>
+  </header>
+
+  <div class="course-search-container" dir="rtl">
+    <div class="course-search">
+      <label for="courseId">חפש קורס לפי מזהה:</label>
+      <input type="number" id="courseId" [(ngModel)]="selectedCourseId" placeholder="הזן מזהה">
+      <button (click)="loadCourseById()">חפש</button>
+    </div>
+
+    <div *ngIf="selectedCourse" class="selected-course">
+      <h2>קורס נבחר</h2>
+      <div>
+        <h3>{{ selectedCourse.title }}</h3>
+        <p *ngIf="selectedCourse.description">{{ selectedCourse.description }}</p>
+        <p>מזהה מרצה: {{ selectedCourse.teacherId }}</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="course-list">
+    <h2>רשימת הקורסים</h2>
+
+    <div *ngIf="loading">
+      טוען קורסים...
+    </div>
+
+    <div *ngIf="error">
+      {{ error }}
+    </div>
+
+    <ul *ngIf="!loading && !error">
+      <li *ngFor="let course of courses; trackBy: trackByFn">
+        <h3>{{ course.title }}</h3>
+        <p *ngIf="course.description">{{ course.description }}</p>
+        <p>מזהה מרצה: {{ course.teacherId }}</p>
+        <button [disabled]="course.enrolled" (click)="enrollInCourse(course.id)">
+          {{ course.enrolled ? 'נרשמת לקורס' : 'הרשם לקורס' }}
+        </button>
+        <button (click)="goToLessonList(course.id)">מידע נוסף</button>
+        <span *ngIf="course.enrolled" class="enrolled-icon">✔️</span>
+      </li>
+    </ul>
+  </main>
+
+  <button class="edit-courses-btn" *ngIf="isTeacher" (click)="goToEditCourses()">
+    עריכת קורסים
+  </button>
+</div>

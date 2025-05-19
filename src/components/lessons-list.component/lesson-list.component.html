@@ -1,0 +1,59 @@
+<div class="lesson-list-container">
+  <!-- Course Details -->
+  <div *ngIf="courseDetails" class="course-details">
+    <h2>{{ courseDetails.title }}</h2>
+    <p>{{ courseDetails.description }}</p>
+  </div>
+
+  <h2>רשימת שיעורים</h2>
+
+  <div *ngIf="loading">
+    טוען שיעורים...
+  </div>
+
+  <div *ngIf="error">
+    {{ error }}
+  </div>
+
+<ul *ngIf="!loading && !error && lessons.length > 0">
+  <li *ngFor="let lesson of lessons">
+    <h3>{{ lesson.title }}</h3>
+    <p>{{ lesson.content }}</p>
+    <button *ngIf="isTeacher" (click)="editLesson(lesson)" class="edit-lesson-btn">
+      ערוך שיעור
+    </button>
+    <button *ngIf="isTeacher" (click)="deleteLesson(lesson.id)" class="delete-lesson-btn">
+      מחק שיעור
+    </button>
+  </li>
+</ul>
+
+  <div *ngIf="!loading && !error && lessons.length === 0">
+    אין שיעורים זמינים לקורס זה.
+  </div>
+
+  <!-- Form for creating a lesson (visible only to teachers) -->
+  <div *ngIf="isTeacher" class="create-lesson-form">
+    <h3>צור שיעור חדש</h3>
+    <form (ngSubmit)="createLesson()">
+      <label for="lessonTitle">כותרת השיעור:</label>
+      <input
+        type="text"
+        id="lessonTitle"
+        [(ngModel)]="newLessonTitle"
+        name="lessonTitle"
+        required
+      />
+
+      <label for="lessonContent">תוכן השיעור:</label>
+      <textarea
+        id="lessonContent"
+        [(ngModel)]="newLessonContent"
+        name="lessonContent"
+        required
+      ></textarea>
+
+      <button type="submit">צור שיעור</button>
+    </form>
+  </div>
+</div>

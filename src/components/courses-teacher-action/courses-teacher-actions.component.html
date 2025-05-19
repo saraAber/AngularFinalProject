@@ -1,0 +1,54 @@
+<div class="teacher-actions-container">
+  <div *ngIf="loadingChange">
+    טוען קורסים...
+  </div>
+
+  <div *ngIf="errorOccurred" class="error-message">
+    {{ errorOccurred }}
+  </div>
+
+  <h3>הוסף קורס חדש</h3>
+  <div>
+    <label for="title">כותרת:</label>
+    <input type="text" id="title" [(ngModel)]="newCourse.title">
+  </div>
+  <div>
+    <label for="description">תיאור:</label>
+    <textarea id="description" [(ngModel)]="newCourse.description"></textarea>
+  </div>
+  <div>
+    <label for="teacherId">מזהה מרצה:</label>
+    <input type="number" id="teacherId" [(ngModel)]="newCourse.teacherId">
+  </div>
+  <button (click)="addCourse()">הוסף קורס</button>
+
+  <ng-container *ngIf="courses.length > 0">
+    <li *ngFor="let course of courses; let i = index; trackBy: trackByFn">
+      <h3>{{ course.title }}</h3>
+      <p *ngIf="course.description">{{ course.description }}</p>
+      <p>מזהה מרצה: {{ course.teacherId }}</p>
+      <div>
+        <button (click)="editCourse(course)">ערוך</button>
+        <button (click)="deleteCourse(course.id!)">מחק</button>
+
+        <div *ngIf="editingCourse && editingCourse.id === course.id">
+          <h3>ערוך קורס</h3>
+          <div>
+            <label for="editTitle">כותרת:</label>
+            <input type="text" id="editTitle" [(ngModel)]="editingCourse.title">
+          </div>
+          <div>
+            <label for="editDescription">תיאור:</label>
+            <textarea id="editDescription" [(ngModel)]="editingCourse.description"></textarea>
+          </div>
+          <div>
+            <label for="editTeacherId">מזהה מרצה:</label>
+            <input type="number" id="editTeacherId" [(ngModel)]="editingCourse.teacherId">
+          </div>
+          <button (click)="saveCourse()">שמור</button>
+          <button (click)="cancelEdit()">בטל</button>
+        </div>
+      </div>
+    </li>
+  </ng-container>
+</div>

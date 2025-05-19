@@ -1,0 +1,129 @@
+/* ייבוא הגופן Assistant מ-Google Fonts (ודא שזה קיים בראש הקובץ שלך) */
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap');
+
+/* סגנון לכותרת h2 ("התחברות" או "הרשמה") */
+h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Assistant', sans-serif;
+  direction: rtl; /* הוספת כיוון מימין לשמאל */
+}
+
+/* סגנון לטופס כולו */
+form {
+  background-color: #f9f9f9;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  margin: 50px auto;
+  font-family: 'Assistant', sans-serif;
+  direction: rtl; /* הוספת כיוון מימין לשמאל */
+}
+
+/* סגנון לכל div בתוך הטופס (עוטף label ו-input) */
+div {
+  margin-bottom: 20px;
+  direction: rtl; /* הוספת כיוון מימין לשמאל */
+}
+
+/* סגנון לתוויות (label) */
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: bold;
+  font-family: 'Assistant', sans-serif;
+  direction: rtl; /* הוספת כיוון מימין לשמאל */
+  text-align: right; /* יישור הטקסט לימין */
+}
+
+/* סגנון לשדות קלט (input) מסוג טקסט, אימייל וסיסמה, וכן לרכיב select */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Assistant', sans-serif;
+  direction: rtl; /* הוספת כיוון מימין לשמאל */
+  text-align: right; /* יישור הטקסט לימין */
+}
+
+/* סגנון לשדה קלט או select כאשר הוא בפוקוס (מקבל את סמן העכבר או נבחר) */
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #673ab7; /* סגול הדגשה */
+  box-shadow: 0 0 5px rgba(103, 58, 183, 0.5);
+}
+
+/* סגנון מיוחד לרכיב select כדי להוסיף חץ נפתח מותאם אישית */
+select {
+  appearance: none; /* הסרת עיצוב ברירת מחדל של הדפדפן */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23555" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position-x: 5%; /* שינוי מיקום החץ לצד שמאל */
+  background-position-y: 50%;
+  padding-left: 30px; /* הוספת ריווח בצד שמאל כדי שהחץ לא יכסה את הטקסט */
+  padding-right: 10px; /* הפחתת ריווח מימין */
+  direction: rtl; /* הוספת כיוון מימין לשמאל */
+  text-align: right; /* יישור הטקסט לימין */
+}
+
+/* סגנון להודעות שגיאה */
+.error-message {
+  color: #dc3545;
+  margin-top: 10px;
+  font-size: 14px;
+  font-family: 'Assistant', sans-serif;
+  direction: rtl; /* הוספת כיוון מימין לשמאל */
+  text-align: right; /* יישור הטקסט לימין */
+}
+
+/* סגנון לכפתור ההגשה ("הירשם" או "התחבר") */
+button[type="submit"] {
+  background-color: #673ab7; /* סגול ראשי */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  font-family: 'Assistant', sans-serif;
+  direction: rtl; /* הוספת כיוון מימין לשמאל */
+}
+
+/* סגנון לכפתור ההגשה במצב ריחוף (כאשר העכבר מעליו) */
+button[type="submit"]:hover {
+  background-color: #512da8;
+}
+
+/* סגנון לפסקה עם הקישור ("כבר יש לך חשבון?" או "אין לך חשבון?") */
+p {
+  text-align: center;
+  margin-top: 20px;
+  color: #777;
+  font-family: 'Assistant', sans-serif;
+  direction: rtl; /* הוספת כיוון מימין לשמאל */
+}
+
+/* סגנון לקישור בתוך הפסקה */
+p a {
+  color: #673ab7;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Assistant', sans-serif;
+  direction: rtl; /* הוספת כיוון מימין לשמאל */
+}
+
+/* סגנון לקישור בתוך הפסקה במצב ריחוף */
+p a:hover {
+  text-decoration: underline;
+}

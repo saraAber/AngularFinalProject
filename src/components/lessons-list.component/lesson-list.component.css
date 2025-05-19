@@ -1,0 +1,169 @@
+/* General container styling */
+.lesson-list-container {
+  direction: rtl; /* Right-to-left layout */
+  font-family: 'Assistant', sans-serif; /* Use the same font as home.component */
+  padding: 30px;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+/* Lesson list header */
+.lesson-list-container h2 {
+  color: #333;
+  margin-bottom: 15px;
+  text-align: right; /* Align text to the right */
+}
+
+/* Loading and error messages */
+.lesson-list-container div[ngIf="loading"],
+.lesson-list-container div[ngIf="error"] {
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+}
+
+.delete-lesson-btn {
+  padding: 5px 10px;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.course-details {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: right; /* Align text to the right */
+}
+
+.course-details h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #5e35b1;
+}
+
+.course-details p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.edit-lesson-btn {
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
+.edit-lesson-btn:hover {
+  background-color: #388e3c;
+}
+
+.delete-lesson-btn:hover {
+  background-color: #b71c1c;
+}
+
+/* Lesson list */
+.lesson-list-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.lesson-list-container li {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: right; /* Align text to the right */
+}
+
+.lesson-list-container li h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #5e35b1;
+}
+
+.lesson-list-container li p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* Create lesson form */
+.create-lesson-form {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.create-lesson-form h3 {
+  margin-bottom: 15px;
+  color: #333;
+  text-align: right; /* Align text to the right */
+}
+
+.create-lesson-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-align: right; /* Align text to the right */
+}
+
+.create-lesson-form input,
+.create-lesson-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  direction: rtl; /* Ensure text input is RTL */
+  text-align: right; /* Align text to the right */
+}
+
+.create-lesson-form button {
+  padding: 10px 15px;
+  background-color: #5e35b1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.create-lesson-form button:hover {
+  background-color: #4527a0;
+}
+
+/* Empty lessons message */
+.lesson-list-container div[ngIf="lessons.length === 0"] {
+  text-align: center;
+  font-size: 16px;
+  color: #777;
+  margin-top: 20px;
+}
+
+/* Add spacing for better readability */
+.lesson-list-container ul li + li {
+  margin-top: 15px;
+}
+
+/* Import the Assistant font */
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap');

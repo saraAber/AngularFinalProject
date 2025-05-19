@@ -1,0 +1,58 @@
+.teacher-actions-container {
+  /* סגנונות לקונטיינר הראשי */
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  direction: rtl; /* הוספה עבור כיוון מימין לשמאל */
+  font-family: Arial, sans-serif; /* דוגמה לגופן עברי - שנה לגופן הרצוי */
+}
+
+h3 {
+  /* סגנונות לכותרות */
+  color: #5e2369;
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-align: right; /* יישור כותרות לימין */
+}
+
+label {
+  /* סגנונות לתוויות */
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-align: right; /* יישור תוויות לימין */
+}
+
+input[type="text"],
+textarea,
+input[type="number"] {
+  /* סגנונות לשדות קלט */
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: right; /* יישור טקסט בתוך שדות הקלט לימין */
+}
+
+button {
+  /* סגנונות לכפתורים */
+  background-color: #8e44ad;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px; /* שמור על ריווח מימין לכפתור הראשון */
+  margin-left: 0; /* וודא שאין ריווח משמאל */
+}
+
+button:hover {
+  background-color: #7a3791;
+}
+
+div {
+  /* סגנונות לאלמנטים div */
+  margin-bottom: 10px;
+}
