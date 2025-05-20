@@ -16,7 +16,7 @@
     <i class="fa-solid fa-lock input-icon"></i>
     <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
       <div *ngIf="loginForm.controls['password'].errors?.['required']">סיסמה היא חובה.</div>
-    </div>
+    </div>  
   </div>
 
   <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>

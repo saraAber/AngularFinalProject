@@ -34,40 +34,85 @@ form {
   direction: rtl;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Each field wrapper */
 div {
   margin-bottom: 20px;
   direction: rtl;
 }
 
-/* Labels */
 label {
-  display: block;
   margin-bottom: 8px;
-  color: #fff;
+  margin-right: 20px;
+  color: #07837d;
   font-weight: bold;
   font-family: 'Assistant', sans-serif;
   direction: rtl;
   text-align: right;
+  align-self: flex-start; /* Align label to the right in flex container */
+}
+/* Input wrapper */
+.input-wrapper {
+  position: relative;
+  margin-bottom: 20px;
 }
 
+.input-wrapper {
+  width: 100%;
+  max-width: 370px; /* or the width you want for your inputs */
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-
-/* Email input */
-input[type="email"] {
-  width: calc(100% - 22px);
+/* Add enough left padding for the icon */
+.input-wrapper input[type="email"],
+.input-wrapper input[type="password"] {
+ width: 100%;
   padding: 10px;
   border: 1px solid #08718b;
   border-radius: 8px;
   font-size: 16px;
   font-family: 'Assistant', sans-serif;
-  background-color: #08718b;
-  /* Light blue */
   color: #0a2342;
   direction: rtl;
-  text-align: left;
+  text-align: right;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  background-color: #e3eaf4;
 }
 
+/* Icon positioning */
+.input-icon {
+  position: absolute;
+  left: 40px; /* distance from the left edge of the input */
+  top: 55%;
+  color: #08718b;
+  font-size: 1.3em;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Email input */
+input[type="email"] {
+  width: calc(100% - 22px);
+  padding: 10px 10px 10px 40px; /* top right bottom left */
+  border: 1px solid #08718b;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Assistant', sans-serif;
+  color: #0a2342;
+  direction: rtl;      /* RTL for email */
+  text-align: right;   /* Align text to the right */
+  box-sizing: border-box;
+}
 /* Password input */
 input[type="password"] {
   width: calc(100% - 22px);

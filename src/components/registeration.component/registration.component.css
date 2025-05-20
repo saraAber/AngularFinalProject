@@ -1,94 +1,124 @@
-/* ייבוא הגופן Assistant מ-Google Fonts (ודא שזה קיים בראש הקובץ שלך) */
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap');
+/* Import Assistant and Rubik fonts */
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&family=Rubik:wght@700&display=swap');
 
-/* סגנון לכותרת h2 ("התחברות" או "הרשמה") */
-h2 {
-  color: #333;
-  text-align: center;
-  margin-bottom: 30px;
-  font-family: 'Assistant', sans-serif;
-  direction: rtl; /* הוספת כיוון מימין לשמאל */
+/* Page background */
+body {
+  background-color: #e3eaf4;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
-/* סגנון לטופס כולו */
+/* Title */
+h2 {
+  color: #fff;
+  text-align: center;
+  font-size: 8rem;
+  margin-top: 50px;
+  margin-bottom: 5px;
+  font-family: 'Rubik', sans-serif;
+  letter-spacing: 2px;
+}
+
+/* Form container */
 form {
-  background-color: #f9f9f9;
+  background-color: #12044e;
   padding: 40px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 350px;
   margin: 50px auto;
   font-family: 'Assistant', sans-serif;
-  direction: rtl; /* הוספת כיוון מימין לשמאל */
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* סגנון לכל div בתוך הטופס (עוטף label ו-input) */
-div {
+/* Each field wrapper */
+form > div {
+  width: 100%;
+  max-width: 370px;
   margin-bottom: 20px;
-  direction: rtl; /* הוספת כיוון מימין לשמאל */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  direction: rtl;
 }
 
-/* סגנון לתוויות (label) */
+/* Labels */
 label {
-  display: block;
   margin-bottom: 8px;
-  color: #555;
+  margin-right: 9px;
+  color: #085669;
   font-weight: bold;
   font-family: 'Assistant', sans-serif;
-  direction: rtl; /* הוספת כיוון מימין לשמאל */
-  text-align: right; /* יישור הטקסט לימין */
+  direction: rtl;
+  text-align: right;
+  align-self: flex-start;
 }
 
-/* סגנון לשדות קלט (input) מסוג טקסט, אימייל וסיסמה, וכן לרכיב select */
+/* Inputs and select */
 input[type="text"],
 input[type="email"],
 input[type="password"],
 select {
-  width: calc(100% - 22px);
+  width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #08718b;
   border-radius: 8px;
   font-size: 16px;
   font-family: 'Assistant', sans-serif;
-  direction: rtl; /* הוספת כיוון מימין לשמאל */
-  text-align: right; /* יישור הטקסט לימין */
+  color: #0a2342;
+  direction: rtl;
+  text-align: right;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  background-color: #e3eaf4;
 }
 
-/* סגנון לשדה קלט או select כאשר הוא בפוקוס (מקבל את סמן העכבר או נבחר) */
+/* Icon positioning */
+.input-icon {
+  position: absolute;
+  left: 30px; /* distance from the left edge of the input */
+  top: 55%;
+  color: #08718b;
+  font-size: 1.3em;
+  pointer-events: none;
+  z-index: 2;
+}
+
+input[type="password"] {
+  background-color: #fff;
+}
+
+select {
+  background-color: #e3eaf4;
+}
+
+/* Input focus */
 input:focus,
 select:focus {
   outline: none;
-  border-color: #673ab7; /* סגול הדגשה */
-  box-shadow: 0 0 5px rgba(103, 58, 183, 0.5);
+  border-color: #1b80e6;
+  box-shadow: 0 0 5px rgba(25, 118, 210, 0.3);
 }
 
-/* סגנון מיוחד לרכיב select כדי להוסיף חץ נפתח מותאם אישית */
-select {
-  appearance: none; /* הסרת עיצוב ברירת מחדל של הדפדפן */
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23555" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
-  background-repeat: no-repeat;
-  background-position-x: 5%; /* שינוי מיקום החץ לצד שמאל */
-  background-position-y: 50%;
-  padding-left: 30px; /* הוספת ריווח בצד שמאל כדי שהחץ לא יכסה את הטקסט */
-  padding-right: 10px; /* הפחתת ריווח מימין */
-  direction: rtl; /* הוספת כיוון מימין לשמאל */
-  text-align: right; /* יישור הטקסט לימין */
-}
-
-/* סגנון להודעות שגיאה */
+/* Error message */
 .error-message {
   color: #dc3545;
   margin-top: 10px;
   font-size: 14px;
   font-family: 'Assistant', sans-serif;
-  direction: rtl; /* הוספת כיוון מימין לשמאל */
-  text-align: right; /* יישור הטקסט לימין */
+  direction: rtl;
+  text-align: right;
 }
 
-/* סגנון לכפתור ההגשה ("הירשם" או "התחבר") */
+/* Submit button */
 button[type="submit"] {
-  background-color: #673ab7; /* סגול ראשי */
-  color: white;
+  background-color: #df9712;
+  color: #0a2342;
   padding: 12px 20px;
   border: none;
   border-radius: 8px;
@@ -97,33 +127,35 @@ button[type="submit"] {
   width: 100%;
   transition: background-color 0.3s ease;
   font-family: 'Assistant', sans-serif;
-  direction: rtl; /* הוספת כיוון מימין לשמאל */
+  font-weight: bold;
+  direction: rtl;
 }
 
-/* סגנון לכפתור ההגשה במצב ריחוף (כאשר העכבר מעליו) */
 button[type="submit"]:hover {
-  background-color: #512da8;
+  background-color: #a36c07;
 }
 
-/* סגנון לפסקה עם הקישור ("כבר יש לך חשבון?" או "אין לך חשבון?") */
+/* Paragraph and link */
 p {
   text-align: center;
   margin-top: 20px;
-  color: #777;
+  color: #fff;
   font-family: 'Assistant', sans-serif;
-  direction: rtl; /* הוספת כיוון מימין לשמאל */
+  direction: rtl;
+  font-size: 1.2em;
 }
 
-/* סגנון לקישור בתוך הפסקה */
-p a {
-  color: #673ab7;
+.register-link {
+  color: #08718b; /* Mustard - זה יהיה הצבע ההתחלתי של הלינק */
   text-decoration: none;
-  font-weight: bold;
   font-family: 'Assistant', sans-serif;
-  direction: rtl; /* הוספת כיוון מימין לשמאל */
+  direction: rtl;
 }
 
-/* סגנון לקישור בתוך הפסקה במצב ריחוף */
-p a:hover {
+.register-link:visited {
+  color: #FF9E00;
+}
+
+.register-link:hover {
   text-decoration: underline;
 }

@@ -1,36 +1,40 @@
-<h2>הרשמה</h2>
+<h2>Regis</h2>
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-  <div>
+  <div class="input-wrapper">
     <label for="name">שם משתמש:</label>
     <input type="text" id="name" formControlName="name">
-    <div *ngIf="registrationForm.controls['name']?.invalid && (registrationForm.controls['username']?.dirty || registrationForm.controls['username']?.touched)">
+    <i class="fa-solid fa-user input-icon"></i>
+    <div *ngIf="registrationForm.controls['name']?.invalid && (registrationForm.controls['name']?.dirty || registrationForm.controls['name']?.touched)">
       <div *ngIf="registrationForm.controls['name']?.errors?.['required']">שם משתמש הוא חובה.</div>
     </div>
   </div>
 
-  <div>
+  <div class="input-wrapper">
     <label for="email">אימייל:</label>
     <input type="email" id="email" formControlName="email">
+    <i class="fa-solid fa-envelope input-icon"></i>
     <div *ngIf="registrationForm.controls['email']?.invalid && (registrationForm.controls['email']?.dirty || registrationForm.controls['email']?.touched)">
       <div *ngIf="registrationForm.controls['email']?.errors?.['required']">אימייל הוא חובה.</div>
       <div *ngIf="registrationForm.controls['email']?.errors?.['email']">פורמט אימייל לא תקין.</div>
     </div>
   </div>
 
-  <div>
+  <div class="input-wrapper">
     <label for="password">סיסמה:</label>
     <input type="password" id="password" formControlName="password">
+    <i class="fa-solid fa-lock input-icon"></i>
     <div *ngIf="registrationForm.controls['password']?.invalid && (registrationForm.controls['password']?.dirty || registrationForm.controls['password']?.touched)">
       <div *ngIf="registrationForm.controls['password']?.errors?.['required']">סיסמה היא חובה.</div>
     </div>
   </div>
 
-  <div>
+  <div class="input-wrapper">
     <label for="role">תפקיד:</label>
     <select id="role" formControlName="role">
       <option value="" disabled>בחר תפקיד</option>
       <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
     </select>
+    <i class="fa-solid fa-user-tag input-icon"></i>
     <div *ngIf="registrationForm.controls['role']?.invalid && (registrationForm.controls['role']?.dirty || registrationForm.controls['role']?.touched)">
       <div *ngIf="registrationForm.controls['role']?.errors?.['required']">יש לבחור תפקיד.</div>
     </div>
@@ -40,6 +44,6 @@
 
   <button type="submit" [disabled]="registrationForm.invalid">הירשם</button>
 </form>
-<p>כבר יש לך חשבון? <span (click)="navigateToLogin()" style="cursor: pointer; color: rgb(162, 0, 255);">התחבר כאן</span></p>
+<p>כבר יש לך חשבון? <span (click)="navigateToLogin()" class="register-link" style="cursor: pointer;">התחבר כאן</span></p>
 
 
