@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { CoursesService } from '../../app/courses.service';
 import { Course } from '../../models/course.model';
@@ -16,6 +16,11 @@ import {LessonService} from '../../app/lesson.service';
   imports: [CommonModule,FormsModule],
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('userCircleElement') userCircleElementRef!: ElementRef;
+  @ViewChild('userOptionsPopupElement') userOptionsPopupElementRef!: ElementRef;
+  @ViewChild('searchIconElement') searchIconElementRef!: ElementRef;
+  @ViewChild('searchPopupElement') searchPopupElementRef!: ElementRef;
+
   courses: Course[] = [];
   isTeacher: boolean = false;
   loading: boolean = true;
@@ -24,6 +29,7 @@ export class HomeComponent implements OnInit {
   selectedCourse: Course | null = null;
   userInfo: User | null = null;
   showUserOptions: boolean = false; // מצב התצוגה של פופאפ אפשרויות המשתמש
+  showSearchPopup: boolean = false; // New property for search popup visibility
 
   constructor(
     private coursesService: CoursesService,
@@ -74,6 +80,10 @@ export class HomeComponent implements OnInit {
     this.showUserOptions = !this.showUserOptions;
   }
 
+  toggleSearchPopup(): void {
+    this.showSearchPopup = !this.showSearchPopup;
+  }
+
   goToLogin() {
     this.router.navigate(['/login']);
   }
@@ -106,11 +116,15 @@ export class HomeComponent implements OnInit {
 
     const newName = prompt('הכנס שם חדש:', this.userInfo.name) || this.userInfo.name;
     const newEmail = prompt('הכנס מייל חדש:', this.userInfo.email) || this.userInfo.email;
+    const newPasswordInput = prompt('הכנס סיסמה חדשה (השאר ריק אם אינך רוצה לשנות):'); // Will be null if Cancel is pressed, or string (possibly empty)
     const newRole = prompt('הכנס תפקיד חדש (admin / teacher / student):', this.userInfo.role) || this.userInfo.role;
 
-    const updatedUser = {
+    const updatedUser: any = {
       name: newName,
       email: newEmail,
+      // Ensure password field is always sent.
+      // If user cancels prompt (null) or enters nothing (empty string), send "". Otherwise, send the input.
+      password: newPasswordInput === null ? "" : newPasswordInput,
       role: newRole
     };
 
@@ -192,4 +206,24 @@ export class HomeComponent implements OnInit {
     return course.id || index;
   }
 
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    // Close user options popup
+    if (this.showUserOptions) {
+      const userCircleClicked = this.userCircleElementRef?.nativeElement.contains(event.target);
+      const userOptionsPopupClicked = this.userOptionsPopupElementRef?.nativeElement.contains(event.target);
+      if (!userCircleClicked && !userOptionsPopupClicked) {
+        this.showUserOptions = false;
+      }
+    }
+
+    // Close search popup
+    if (this.showSearchPopup) {
+      const searchIconClicked = this.searchIconElementRef?.nativeElement.contains(event.target);
+      const searchPopupClicked = this.searchPopupElementRef?.nativeElement.contains(event.target);
+      if (!searchIconClicked && !searchPopupClicked) {
+        this.showSearchPopup = false;
+      }
+    }
+  }
 }

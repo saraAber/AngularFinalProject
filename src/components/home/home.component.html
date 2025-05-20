@@ -1,20 +1,15 @@
 <div class="home-container">
   <div class="user-circle-container">
-    <div class="user-circle" (click)="toggleUserOptions()">
+    <div class="user-circle" (click)="toggleUserOptions()" #userCircleElement>
       {{ getUserInitials() }}
     </div>
-    <div *ngIf="showUserOptions" class="user-options-popup">
+    <div *ngIf="showUserOptions" class="user-options-popup" #userOptionsPopupElement>
       <button (click)="editUser()">
         <i class="material-icons">edit</i> עריכת פרטים
       </button>
       <button (click)="deleteUser()">
         <i class="material-icons">delete</i> מחיקת משתמש
       </button>
-    </div>
-  </div>
-
-  <header class="top-bar">
-    <div class="auth-buttons">
       <button (click)="goToLogin()">
         <i class="material-icons">login</i> התחברות
       </button>
@@ -22,16 +17,22 @@
         <i class="material-icons">person_add</i> הרשמה
       </button>
     </div>
-  </header>
+  </div>
 
-  <div class="course-search-container" dir="rtl">
+  <!-- Search Icon -->
+  <div class="search-icon-container" (click)="toggleSearchPopup()" #searchIconElement>
+    <i class="material-icons">search</i>
+  </div>
+
+  <!-- Search Popup Container -->
+  <div *ngIf="showSearchPopup" class="course-search-container content-section" dir="rtl" #searchPopupElement>
     <div class="course-search">
       <label for="courseId">חפש קורס לפי מזהה:</label>
       <input type="number" id="courseId" [(ngModel)]="selectedCourseId" placeholder="הזן מזהה">
       <button (click)="loadCourseById()">חפש</button>
     </div>
 
-    <div *ngIf="selectedCourse" class="selected-course">
+    <div *ngIf="selectedCourse" class="selected-course content-section">
       <h2>קורס נבחר</h2>
       <div>
         <h3>{{ selectedCourse.title }}</h3>
@@ -41,7 +42,7 @@
     </div>
   </div>
 
-  <main class="course-list">
+  <main class="course-list content-section">
     <h2>רשימת הקורסים</h2>
 
     <div *ngIf="loading">

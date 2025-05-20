@@ -1,27 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&family=Rubik:wght@700&display=swap');
+
 .home-container {
   direction: rtl;
   font-family: "Assistant", sans-serif;
-  padding: 30px;
-  background-color: #f4f4f4;
+  padding: 80px 30px 30px; /* Adjusted top padding */
+  background-color: #e3eaf4; /* Login page body background */
   min-height: 100vh;
-  position: relative; /* כדי למקם את הכפתור עריכת קורסים באופן אבסולוטי */
+  position: relative; 
 }
 
-/* עיגול משתמש ואפשרויות פופאפ */
+/* Shared style for content sections, similar to login form */
+.content-section {
+  background-color: #12044e; /* Deep blue from login form */
+  color: #fff; /* White text for dark background */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px;
+  direction: rtl;
+}
+
+.content-section h2, 
+.content-section h3 {
+  font-family: 'Rubik', sans-serif; /* Rubik for titles */
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 2.2rem; /* Adjusted size */
+}
+
+.content-section p {
+  color: #f0f0f0; /* Slightly off-white for paragraph text */
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Button styling adapted from login page */
+.home-container button,
+.content-section button {
+  background-color: #df9712; /* Mustard */
+  color: #0a2342; /* Deep blue text */
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-left: 5px; /* Spacing for multiple buttons */
+}
+
+.home-container button:hover,
+.content-section button:hover {
+  background-color: #a36c07; /* Darker mustard on hover */
+}
+
+.home-container button:disabled,
+.content-section button:disabled {
+  background-color: #a8a8a8; /* Gray out disabled buttons */
+  color: #6f6f6f;
+  cursor: not-allowed;
+}
+
 .user-circle-container {
   position: absolute;
   top: 20px;
-  left: 20px;
+  left: 40px; /* Increased from 25px to provide more margin from the edge */
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 20; /* Ensure user circle container is above search */
 }
 
 .user-circle {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #5e35b1;
+  background-color: #12044e; /* Match content section blue */
   color: white;
   display: flex;
   align-items: center;
@@ -34,75 +89,57 @@
 
 .user-options-popup {
   position: absolute;
-  top: 60px; /* ממקם את הפופאפ מתחת לעיגול */
-  left: 50%;
-  transform: translateX(-50%); /* ממקד את הפופאפ אופקית */
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 10px;
+  top: 60px; 
+  left: 0; /* Align with parent's left edge */
+  background-color: rgba(179, 178, 178, 0.50); /* Match search popup background */
+  border: none; /* Remove old border */
+  border-radius: 10px; /* Consistent border-radius */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Match search popup shadow */
+  padding: 0; /* Padding will be on buttons now */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  z-index: 10; /* מוודא שהפופאפ מעל התוכן האחר */
+  z-index: 10; /* Popup above search, user circle container above popup if icon part of it */
+  min-width: 180px; /* Ensure it's not too cramped */
+  max-width: 240px; /* Prevent it from being too wide */
+  overflow: hidden; /* To respect border-radius of buttons if they are first/last */
 }
 
 .user-options-popup button {
-  background: none;
+  background: none; /* Buttons inside popup distinct from main theme */
   border: none;
-  padding: 5px 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.05); /* Subtle separator */
+  color: #12044E; /* Darker color for better contrast and theme alignment */
+  padding: 10px 12px; /* Adjusted padding */
   cursor: pointer;
   display: flex;
   align-items: center;
   transition: background-color 0.2s ease;
   width: 100%;
-  text-align: right; /* מיישר את הטקסט לימין */
+  text-align: right; 
+  font-weight: normal; /* Override bold from general button style */
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.user-options-popup button:last-child {
+  border-bottom: none; /* No separator for the last button */
 }
 
 .user-options-popup button:hover {
-  background-color: #f0f0f0;
+  background-color: rgba(0,0,0,0.05); /* Subtle hover effect */
 }
 
 .user-options-popup button i {
-  margin-left: 5px;
+  margin-left: 8px; /* Space for icon */
+  color: #555;
 }
 
-/* אזור עליון */
-.top-bar {
-  display: flex;
-  justify-content: flex-start; /* מיישר את הכפתורים לשמאל */
-  margin-bottom: 20px;
-}
-
-.auth-buttons button {
-  margin-left: 10px;
-  background-color: #5e35b1;
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.auth-buttons button:hover {
-  background-color: #4527a0;
-}
-
-.auth-buttons button i {
-  margin-left: 5px;
-}
-
-/* רשימת קורסים */
 .course-list {
   margin-top: 20px;
 }
 
 .course-list h2 {
-  color: #333;
-  margin-bottom: 15px;
+  font-size: 1.8rem; /* Slightly smaller for list title */
 }
 
 .course-list ul {
@@ -111,81 +148,125 @@
 }
 
 .course-list li {
-  background: white;
-  border: 1px solid #ddd;
+  background: #1a075f; /* Slightly lighter blue than section bg, or distinct border */
+  border: 1px solid #08718b; /* Teal border from login inputs */
   padding: 15px;
   margin-bottom: 12px;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
-/* כפתור עריכת קורסים */
+.course-list li h3 {
+  font-family: 'Assistant', sans-serif; /* Keep course titles in Assistant for clarity */
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.course-list li p {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
 .edit-courses-btn {
-  position: absolute;
-  bottom: 20px;
-  left: 20px; /* מיושר לשמאל */
-  background-color: #5e35b1;
-  color: white;
   padding: 12px 22px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
   font-size: 16px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
-}
-
-.edit-courses-btn:hover {
-  background-color: #4527a0;
+  margin-top: 20px; /* Add space above the button */
+  margin-left: 20px; /* Align with typical content indentation */
 }
 
 .enrolled-icon {
-  color: green;
+  color: #4CAF50; /* Keep green for positive confirmation */
   font-size: 1.2em;
   margin-left: 10px;
 }
 
-/* ייבוא הגופן Assistant מ-Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap');
+.search-icon-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 20; /* Same as user circle container */
+  cursor: pointer;
+  padding: 10px; /* Clickable area */
+  color: #12044e; /* Match user circle icon color or theme */
+}
+
+.search-icon-container .material-icons {
+  font-size: 28px; /* Adjust icon size as needed */
+}
+
+.course-search-container.content-section {
+  padding: 10px; 
+  max-width: 320px; 
+  background-color: rgba(179, 178, 178, 0.50); /* Slightly transparent gray */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: add a subtle shadow if transparent */
+  position: absolute;   
+  top: 70px;            /* Position below the search icon */
+  right: 20px;          /* Align with search icon */
+  z-index: 15;           /* Above general content, potentially alongside user options */
+  margin-bottom: 0;    
+  margin-left: 0;      
+  margin-right: 0;     
+}
 
 .course-search-container {
-  direction: rtl;
-  font-family: 'Assistant', sans-serif;
   text-align: right;
-  margin: 20px;
 }
 
 .course-search label {
   font-weight: bold;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 5px; /* Slightly reduced margin */
+  color: #12044e; /* Dark color for visibility on light page background */
+  font-size: 0.9rem; /* Smaller font */
 }
 
 .course-search input[type="number"] {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  width: calc(100% - 16px); /* Adjusted for new padding */
+  padding: 6px; /* Reduced padding */
+  margin-bottom: 8px; /* Slightly reduced margin */
+  border: 1px solid #08718b; 
+  border-radius: 8px;
   direction: rtl;
   text-align: right;
+  background-color: #e3eaf4; 
+  color: #0a2342; 
+  font-family: 'Assistant', sans-serif;
+  font-size: 0.9rem; /* Smaller font */
+}
+
+.course-search input[type="number"]::placeholder {
+  color: #6c757d;
 }
 
 .course-search button {
-  background-color: #8e44ad;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  /* Styles inherited from .content-section button if not overridden by .home-container button */
+  padding: 6px 12px; /* Reduced padding */
+  font-size: 0.9rem; /* Smaller font */
 }
 
-.course-search button:hover {
-  background-color: #7a3791;
+.selected-course.content-section {
+  /* Ensuring selected course section retains original .content-section padding if desired */
+  /* Or apply similar reduction if it should also be smaller */
+  /* For now, assuming only search container is targeted for size reduction */
+   padding: 30px; /* Reaffirm original padding for other content sections */
 }
 
-.selected-course,
-ul {
-  margin-top: 30px;
-  direction: rtl;
+.selected-course {
+  margin-top: 20px;
+}
+
+.selected-course h2 {
+  font-size: 1.8rem; /* Match course list title */
+}
+
+.course-list.content-section {
+    padding: 30px; /* Reaffirm original padding */
+}
+
+.home-container div[loading], 
+.home-container div[error] {
+    color: #12044e; /* Dark blue text on light page background */
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2rem;
 }
