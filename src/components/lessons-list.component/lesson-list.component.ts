@@ -8,13 +8,14 @@ import { FormsModule } from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
 import { CoursesService } from '../../app/courses.service'; // Import CoursesService
 import { Course } from '../../models/course.model'; // Import Course model
+import { MatIconModule } from '@angular/material/icon'; // Add this import
 
 @Component({
     selector: 'app-lesson-list',
     templateUrl: './lesson-list.component.html',
     styleUrls: ['./lesson-list.component.css'],
     standalone: true,
-    imports: [CommonModule, FormsModule],
+    imports: [CommonModule, FormsModule, MatIconModule], // Add MatIconModule here
     encapsulation: ViewEncapsulation.None,
 })
 export class LessonListComponent implements OnInit {
@@ -26,6 +27,7 @@ export class LessonListComponent implements OnInit {
     newLessonTitle: string = '';
     newLessonContent: string = '';
     courseDetails: Course | null = null; // Add property for course details
+    isCreateLessonFormVisible: boolean = false; // To control form visibility
 
     constructor(
         private route: ActivatedRoute,
@@ -150,4 +152,8 @@ export class LessonListComponent implements OnInit {
         },
     });
 }
+
+    toggleCreateLessonForm(): void {
+        this.isCreateLessonFormVisible = !this.isCreateLessonFormVisible;
+    }
 }

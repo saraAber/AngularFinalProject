@@ -1,79 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
 /* General container styling */
 .lesson-list-container {
   direction: rtl; /* Right-to-left layout */
-  font-family: 'Assistant', sans-serif; /* Use the same font as home.component */
+  font-family: 'Assistant', sans-serif;
   padding: 30px;
-  background-color: #f4f4f4;
+  background-color: #e3eaf4; /* Home component background */
   min-height: 100vh;
+  color: #12044e; /* Default text color for page (dark blue) */
 }
 
-/* Lesson list header */
-.lesson-list-container h2 {
-  color: #333;
-  margin-bottom: 15px;
-  text-align: right; /* Align text to the right */
+/* Main title for the lesson list page */
+.lessons-page-title { /* Changed selector to be more specific */
+  display: block; /* Ensure it's a block-level element */
+  width: 100%;    /* Ensure it spans the full width */
+  color: #333333; /* Dark gray text, changed from deep blue */
+  margin-bottom: 25px;
+  text-align: right; /* Centered title */
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.5em;
+}
+
+/* Container for lessons page title and add button */
+.lessons-title-container {
+  display: flex;
+  justify-content: space-between; /* Aligns title to one side, button to the other */
+  align-items: center; /* Vertically aligns items */
+  width: 100%;
+  margin-bottom: 20px; /* Space below the title area */
+}
+
+.add-lesson-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #0d7691; /* Same as updated h2 color, or choose another */
+}
+
+.add-lesson-icon-btn mat-icon {
+  font-size: 2em; /* Make icon larger */
+  vertical-align: middle;
+}
+
+.add-lesson-icon-btn:hover {
+  color: #056c8b; /* Darker shade on hover */
 }
 
 /* Loading and error messages */
 .lesson-list-container div[ngIf="loading"],
-.lesson-list-container div[ngIf="error"] {
+.lesson-list-container div[ngIf="error"],
+.lesson-list-container div[ngIf="lessons.length === 0"] { /* Style for no lessons message */
   text-align: center;
-  font-size: 16px;
+  font-size: 1.1em;
   color: #555;
-}
-
-.delete-lesson-btn {
-  padding: 5px 10px;
-  background-color: #e53935;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-}
-
-.course-details {
-  background-color: #fff;
-  padding: 15px;
-  border: 1px solid #ddd;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  text-align: right; /* Align text to the right */
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+/* Course Details Section */
+.course-details {
+  color: rgb(255, 255, 255); /* User set - this applies to direct text children, not h2/p */
+  padding: 20px;
+  border: 0.5px solid rgb(10, 4, 95); /* Thicker border matching h2 color */
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  max-width: 600px; /* User set */
+  text-align: center;
 }
 
 .course-details h2 {
-  margin: 0;
-  font-size: 20px;
-  color: #5e35b1;
+  margin: 0 0 10px 0;
+  font-size: 2.8em;
+  font-family: 'Rubik', sans-serif;
+  color: rgb(10, 4, 95); /* User set */
+  font-weight: 800; /* Lighter than default bold, more lightweight */
 }
 
 .course-details p {
   margin: 5px 0;
-  color: #555;
-}
-
-.edit-lesson-btn {
-  padding: 5px 10px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-  margin-right: 5px;
-}
-
-.edit-lesson-btn:hover {
-  background-color: #388e3c;
-}
-
-.delete-lesson-btn:hover {
-  background-color: #b71c1c;
+  font-size: 1em;
+  color: #968003; /* User set */
+  font-family: 'Assistant', sans-serif;
+  font-weight: 400; /* Explicitly regular weight */
+  line-height: 1.6; /* Improved readability */
 }
 
 /* Lesson list */
@@ -82,88 +98,137 @@
   padding: 0;
 }
 
+
 .lesson-list-container li {
-  background: white;
-  border: 1px solid #ddd;
-  padding: 15px;
-  margin-bottom: 12px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  text-align: right; /* Align text to the right */
+  background: #12044e; /* Deep blue content card */
+  color: white;
+  border: none;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .lesson-list-container li h3 {
-  margin: 0;
-  font-size: 18px;
-  color: #5e35b1;
+  margin: 0 0 10px 0;
+  font-size: 1.5em;
+  font-family: 'Rubik', sans-serif;
+  color: white;
 }
 
 .lesson-list-container li p {
-  margin: 5px 0;
-  color: #555;
+  margin: 5px 0 15px 0;
+  font-size: 1em;
+  color: #e0e0e0;
+  font-family: 'Assistant', sans-serif;
+}
+
+/* Buttons within lesson items */
+.lesson-list-container li button {
+  background-color: transparent;
+  border: none;
+  padding: 6px; /* Small padding for better click area */
+  cursor: pointer;
+  margin-right: 8px; /* Spacing between buttons */
+  display: inline-flex; /* Helps with icon alignment */
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Make them circular for a modern feel */
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.lesson-list-container li button mat-icon {
+  font-size: 22px; /* Consistent icon size */
+  vertical-align: middle; /* Ensure icons are vertically centered */
+}
+
+.lesson-list-container li button:hover {
+  transform: scale(1.1); /* Slight scale on hover */
+}
+
+.edit-lesson-btn mat-icon {
+  color: #09a0c5; /* White icon */
+}
+.edit-lesson-btn:hover {
+  background-color: rgba(18, 4, 78, 0.1); /* Light deep blue background on hover */
+}
+
+.delete-lesson-btn mat-icon {
+  color: #d9534f; /* Red for delete */
+}
+.delete-lesson-btn:hover {
+  background-color: rgba(217, 83, 79, 0.1); /* Light red background on hover */
 }
 
 /* Create lesson form */
 .create-lesson-form {
-  margin: 20px 0;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 30px 0;
+  padding: 25px;
+  border: none;
+  border-radius: 10px;
+  background-color: #12044e; /* Deep blue content card */
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .create-lesson-form h3 {
-  margin-bottom: 15px;
-  color: #333;
-  text-align: right; /* Align text to the right */
+  margin-bottom: 20px;
+  font-family: 'Rubik', sans-serif;
+  color: white;
+  font-size: 1.6em;
+  text-align: center;
 }
 
 .create-lesson-form label {
   display: block;
-  margin-bottom: 5px;
+  width: 90%; /* Or a fixed width if preferred */
+  margin: 0 auto 8px auto; /* Centers the block and adds bottom margin */
   font-weight: bold;
-  text-align: right; /* Align text to the right */
+  font-family: 'Assistant', sans-serif;
+  color: #e0e0e0;
+  text-align: right; /* Keep label text aligned to the right for RTL */
 }
 
-.create-lesson-form input,
+.create-lesson-form input[type="text"],
 .create-lesson-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  direction: rtl; /* Ensure text input is RTL */
-  text-align: right; /* Align text to the right */
+  display: block; /* Ensure inputs are block for margin auto to work */
+  width: 90%; /* Or a fixed width matching label, e.g., 300px */
+  padding: 12px;
+  margin: 0 auto 15px auto; /* Centers block, adds bottom margin */
+  border: 1px solid #df9712; /* Mustard border */
+  border-radius: 6px;
+  direction: rtl;
+  text-align: right;
+  background-color: rgba(255, 255, 255, 0.1); /* Slight white tint on dark background */
+  color: white;
+  font-family: 'Assistant', sans-serif;
+  font-size: 1em;
 }
 
-.create-lesson-form button {
-  padding: 10px 15px;
-  background-color: #5e35b1;
-  color: white;
+.create-lesson-form input[type="text"]:focus,
+.create-lesson-form textarea:focus {
+  outline: none;
+  border-color: #eeb34e; /* Lighter mustard on focus */
+  box-shadow: 0 0 0 0.2rem rgba(223, 151, 18, 0.35);
+}
+
+.create-lesson-form button[type="submit"] {
+  padding: 12px 25px;
+  background-color: #df9712; /* Mustard primary button */
+  color: white; /* White text on mustard */
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: 'Assistant', sans-serif;
+  font-size: 1.1em;
+  display: block; /* Make button block to center it */
+  width: fit-content;
+  margin: 15px auto 0 auto; /* Center the button */
 }
 
-.create-lesson-form button:hover {
-  background-color: #4527a0;
+.create-lesson-form button[type="submit"]:hover {
+  background-color: #c88206; /* Darker mustard on hover */
+  transform: translateY(-1px);
 }
-
-/* Empty lessons message */
-.lesson-list-container div[ngIf="lessons.length === 0"] {
-  text-align: center;
-  font-size: 16px;
-  color: #777;
-  margin-top: 20px;
-}
-
-/* Add spacing for better readability */
-.lesson-list-container ul li + li {
-  margin-top: 15px;
-}
-
-/* Import the Assistant font */
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap');

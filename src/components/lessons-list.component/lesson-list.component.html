@@ -5,7 +5,12 @@
     <p>{{ courseDetails.description }}</p>
   </div>
 
-  <h2>רשימת שיעורים</h2>
+  <div class="lessons-title-container">
+    <h2 class="lessons-page-title">רשימת שיעורים</h2>
+    <button *ngIf="isTeacher" (click)="toggleCreateLessonForm()" class="add-lesson-icon-btn" aria-label="Add new lesson">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+  </div>
 
   <div *ngIf="loading">
     טוען שיעורים...
@@ -15,25 +20,25 @@
     {{ error }}
   </div>
 
-<ul *ngIf="!loading && !error && lessons.length > 0">
-  <li *ngFor="let lesson of lessons">
-    <h3>{{ lesson.title }}</h3>
-    <p>{{ lesson.content }}</p>
-    <button *ngIf="isTeacher" (click)="editLesson(lesson)" class="edit-lesson-btn">
-      ערוך שיעור
-    </button>
-    <button *ngIf="isTeacher" (click)="deleteLesson(lesson.id)" class="delete-lesson-btn">
-      מחק שיעור
-    </button>
-  </li>
-</ul>
+  <ul *ngIf="!loading && !error && lessons.length > 0">
+    <li *ngFor="let lesson of lessons">
+      <h3>{{ lesson.title }}</h3>
+      <p>{{ lesson.content }}</p>
+      <button *ngIf="isTeacher" (click)="editLesson(lesson)" class="edit-lesson-btn" aria-label="Edit lesson">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button *ngIf="isTeacher" (click)="deleteLesson(lesson.id)" class="delete-lesson-btn" aria-label="Delete lesson">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </li>
+  </ul>
 
   <div *ngIf="!loading && !error && lessons.length === 0">
     אין שיעורים זמינים לקורס זה.
   </div>
 
   <!-- Form for creating a lesson (visible only to teachers) -->
-  <div *ngIf="isTeacher" class="create-lesson-form">
+  <div *ngIf="isTeacher && isCreateLessonFormVisible" class="create-lesson-form">
     <h3>צור שיעור חדש</h3>
     <form (ngSubmit)="createLesson()">
       <label for="lessonTitle">כותרת השיעור:</label>
